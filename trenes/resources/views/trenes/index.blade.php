@@ -23,7 +23,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Nombre del tren</th>
                     <th>Numero pasajeros</th>
                     <th>Año</th>
                     <th>Tipo de tren</th>
@@ -40,17 +40,17 @@
                         <td>{{$tren->year}}</td>
                         <td>{{$tren->trainType->type}}</td>
                         <td>
-                            <form action="{{route("trenes.show",["trenes"=> $tren->id])}}" method="get">
+                            <form action="{{route("trenes.show",["trenes"=> $tren->id])}}" method ="get">
                                 <input type="submit" value="🧿">
                             </form>
                         </td>
                         <td>
-                            <form action="{{route("trenes.edit",["trenes"=> $tren->id])}}" method= "get">
+                            <form action="{{route("trenes.edit",["trenes"=> $tren->id])}}" method = "get">
                                 <input type="submit" value="📝">
                             </form>
                         </td>
                         <td>
-                            <form action="{{route("trenes.destroy",["trenes"=> $tren->id])}}" method="post">
+                            <form action="{{route("trenes.destroy",["trenes"=> $tren->id])}}" method = "post">
                                 @csrf
                                 {{method_field("DELETE")}}
                                 <input type="submit" value="🗑️">

@@ -31,10 +31,10 @@ class TrainController extends Controller
     public function store(Request $request)
     {
         $trenes = new Train;
-        $trenes -> name = $request -> input("nombre");
-        $trenes -> passengers = $request -> input("pasajero");
-        $trenes -> year = $request -> input("ano");
-        $trenes -> train_type_id = $request -> input("tipo");
+        $trenes -> name = $request -> input("name");
+        $trenes -> passengers = $request -> input("passengers");
+        $trenes -> year = $request -> input("year");
+        $trenes -> train_type_id = $request -> input("typeTrain");
         $trenes -> save();
         return redirect("/trenes");
     }
@@ -53,7 +53,8 @@ class TrainController extends Controller
      */
     public function edit(Train $train)
     {
-        //
+        $trenes = Train::find($id);
+        return view("trenes/edit",["trenes"=>$trenes]);
     }
 
     /**
@@ -62,10 +63,10 @@ class TrainController extends Controller
     public function update(Request $request, string $id)
     {
         $trenes = Train::find($id);
-        $trenes -> name = $request -> input("nombre");
-        $trenes -> passengers = $request -> input("pasajeros");
-        $trenes -> year = $request -> input("ano");
-        $trenes -> train_type_id = $request -> input("tipo");
+        $trenes -> name = $request -> input("name");
+        $trenes -> passengers = $request -> input("passengers");
+        $trenes -> year = $request -> input("year");
+        $trenes -> train_type_id = $request -> input("typeTrain");
         $trenes -> save();
         return redirect("/trenes");
     }
