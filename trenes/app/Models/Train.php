@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Train extends Model
 {
     use HasFactory;
+
+    public function trainType(){
+        return $this->belongsTo(TrainType::class);
+    }
 }

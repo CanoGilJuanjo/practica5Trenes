@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Train;
 use Illuminate\Http\Request;
 use DB;
+
 class TrainController extends Controller
 {
     /**
@@ -29,15 +30,22 @@ class TrainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $trenes = new Train;
+        $trenes -> name = $request -> input("nombre");
+        $trenes -> passengers = $request -> input("pasajero");
+        $trenes -> year = $request -> input("ano");
+        $trenes -> train_type_id = $request -> input("tipo");
+        $trenes -> save();
+        return redirect("/trenes");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Train $train)
+    public function show(string $id)
     {
-        //
+        $trenes = Train::find($id);
+        return view("trenes/show",["trenes"=>$trenes]);
     }
 
     /**
@@ -51,16 +59,23 @@ class TrainController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Train $train)
+    public function update(Request $request, string $id)
     {
-        //
+        $trenes = Train::find($id);
+        $trenes -> name = $request -> input("nombre");
+        $trenes -> passengers = $request -> input("pasajeros");
+        $trenes -> year = $request -> input("ano");
+        $trenes -> train_type_id = $request -> input("tipo");
+        $trenes -> save();
+        return redirect("/trenes");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Train $train)
+    public function destroy(string $id)
     {
-        //
+        DB::table("trains")->where("id","=",$id)->delete();
+        return redirect("/trenes");
     }
 }

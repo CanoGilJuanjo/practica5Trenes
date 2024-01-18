@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource("/trenes",TrainController::class);
+Route::resource("/tickets",TicketController::class);
