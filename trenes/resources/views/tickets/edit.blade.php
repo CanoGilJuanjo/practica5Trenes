@@ -16,25 +16,25 @@
             <input type="number" name="price" id="" value="{{$tickets -> price}}"><br><br>
             <label for="">Nombre del tren</label>
             <select name="train_id" id="">
-                <!-- Buscar manera para hacerlo con un for -->
+                @foreach ($trenes as $tren)
+                    @if ($tickets->train_id == $tren->id)
+                        <option value="{{$tren->id}}" selected>{{$tren->name}}</option>
+                    @else
+                        <option value="{{$tren->id}}">{{$tren->name}}</option>    
+                    @endif
+                @endforeach
             </select>
+            <br>
+            <br>
             <label >Tipo de billete</label>
-            <select name="typeTrain" id="">
-                @php
-                    if($tickets->type_ticket_id == 1){
-                        echo "<option value='1' selected>Billete sencillo</option>";
-                        echo "<option value='2' >Abono mensual</option>";
-                        echo "<option value='3' >Abono trimestral</option>";
-                    }else if($tickets->type_ticket_id == 2){
-                        echo "<option value='1' >Billete sencillo</option>";
-                        echo "<option value='2' selected>Abono mensual</option>";
-                        echo "<option value='3' >Abono trimestral</option>";
-                    }else if($tickets->type_ticket_id == 3){
-                        echo "<option value='1' >Billete sencillo</option>";
-                        echo "<option value='2' >Abono mensual</option>";
-                        echo "<option value='3' selected>Abono trimestral</option>";
-                    }
-                @endphp
+            <select name="ticket_type_id" id="">
+                @foreach ($ticketType as $tipo)
+                    @if ($tipo->id == $tickets->ticket_type_id)
+                        <option value="{{$tipo->id}}" selected>{{$tipo->type}}</option> 
+                    @else
+                        <option value="{{$tipo->id}}">{{$tipo->type}}</option>    
+                    @endif
+                @endforeach
             </select>
             <input type="submit" value="editar">
         </form>

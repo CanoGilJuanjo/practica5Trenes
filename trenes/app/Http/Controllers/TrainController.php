@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Train;
+use App\Models\TrainType;
 use Illuminate\Http\Request;
 use DB;
 
@@ -22,7 +23,8 @@ class TrainController extends Controller
      */
     public function create()
     {
-        //
+        $trenes = TrainType::all();
+        return view("trenes/create",["trenes"=>$trenes]);
     }
 
     /**
@@ -45,16 +47,18 @@ class TrainController extends Controller
     public function show(string $id)
     {
         $trenes = Train::find($id);
-        return view("trenes/show",["trenes"=>$trenes]);
+        
+        return view("trenes/show",["trenes"=>$trenes,]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Train $train)
+    public function edit(string $id)
     {
         $trenes = Train::find($id);
-        return view("trenes/edit",["trenes"=>$trenes]);
+        $tiposTrenes = TrainType::all();
+        return view("trenes/edit",["trenes"=>$trenes,"tiposTrenes"=>$tiposTrenes]);
     }
 
     /**
@@ -76,6 +80,7 @@ class TrainController extends Controller
      */
     public function destroy(string $id)
     {
+        DB::table("tickets")->where("train_id","=",$id)->delete();
         DB::table("trains")->where("id","=",$id)->delete();
         return redirect("/trenes");
     }

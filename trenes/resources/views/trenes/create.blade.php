@@ -15,10 +15,11 @@
             <input type="text" name="passengers" id=""><br><br>
             <label for="">Año</label>
             <input type="number" name="year"><br><br>
+            <label for="">Tipo de tren</label>
             <select name="typeTrain" id="">
-                <option value="1" selected>Cercanias</option>
-                <option value="2">Media Distancia</option>
-                <option value="3">Alta Velocidad</option>
+                @foreach ($trenes as $tren)
+                    <option value="{{$tren->id}}">{{$tren->type}}</option>
+                @endforeach
             </select>
             <input type="submit" value="crear">
         </form>

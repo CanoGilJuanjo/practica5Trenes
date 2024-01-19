@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainController;
 use App\Http\Controllers\TicketController;
-
+use App\Http\Controllers\TicketTypeController;
+use App\Http\Controllers\TrainTypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +22,5 @@ Route::get('/', function () {
 
 Route::resource("/trenes",TrainController::class);
 Route::resource("/tickets",TicketController::class);
+Route::resource("/tipostrenes",TrainTypeController::class);
+Route::resource("/tipostickets",TicketTypeController::class);

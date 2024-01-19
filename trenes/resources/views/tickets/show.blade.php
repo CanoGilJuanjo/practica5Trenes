@@ -10,6 +10,7 @@
         <p>Fecha del billete: {{$tickets -> date}}</p>
         <p>Precio del billete: {{$tickets -> price }}</p>
         <p>Nombre del tren: {{$tickets -> train -> name}}</p>
-        <p>Tipo de billete: {{$trenes -> ticketType -> type}}</p>
+        <p>Tipo de billete: {{$tickets -> ticketType -> type}}</p>
+        <a href="{{route("tickets.index")}}"><button>Volver</button></a>
     </body>
 </html>

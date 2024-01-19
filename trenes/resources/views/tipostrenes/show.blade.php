@@ -7,10 +7,7 @@
         <title>Ver tren</title>
     </head>
     <body>
-        <p>Nombre del tren: {{$trenes -> name}}</p>
-        <p>Numero pasajeros: {{$trenes -> passengers }}</p>
-        <p>Año: {{$trenes -> year}}</p>
-        <p>Tipo de tren: {{$trenes -> trainType -> type}}</p>
-        <a href="{{route("trenes.index")}}"><button>Volver</button></a>
+        <p>Tipo de tren: {{$tipos -> type}}</p>
+        <a href="{{route("tipostrenes.index")}}"><button>Volver</button></a>
     </body>
 </html>

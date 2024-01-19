@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\TrainType;
 use Illuminate\Http\Request;
+use App\Models\Train;
+use DB;
 
 class TrainTypeController extends Controller
 {
@@ -12,7 +14,8 @@ class TrainTypeController extends Controller
      */
     public function index()
     {
-        //
+        $tipos = TrainType::all();
+        return view("tipostrenes/index",["tipos"=>$tipos]);
     }
 
     /**
@@ -20,7 +23,7 @@ class TrainTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view("tipostrenes/create");
     }
 
     /**
@@ -28,7 +31,10 @@ class TrainTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipos = new TrainType;
+        $tipos -> type = $request -> input("type");
+        $tipos -> save();
+        return redirect("/tipostrenes");
     }
 
     /**
@@ -36,30 +42,36 @@ class TrainTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $tipos = TrainType::find($id);
+        return view("tipostrenes/show",["tipos"=>$tipos]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TrainType $trainType)
+    public function edit(string $id)
     {
-        //
+        $tipos = TrainType::find($id);
+        return view("tipostrenes/edit",["tipos"=>$tipos]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TrainType $trainType)
+    public function update(Request $request, string $id)
     {
-        //
+        $tipos = TrainType::find($id);
+        $tipos -> type = $request -> input("type");
+        $tipos -> save();
+        return redirect("/tipostrenes");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TrainType $trainType)
+    public function destroy(string $id)
     {
-        //
+        DB::table("train_types")->where("id","=",$id)->delete();
+        return redirect("/tipostrenes");
     }
 }

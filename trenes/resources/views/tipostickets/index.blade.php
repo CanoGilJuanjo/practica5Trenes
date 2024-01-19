@@ -3,22 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Billetes</title>
+        <title>Tipos de tickets disponibles</title>
         <style>
-            table{
+            td{
                 text-align: center;
             }
-            td,th{
+            th,td{
                 border: 1px solid black;
                 padding: 5px;
-            }
-            tr{
-                transition: all 0.3s;
             }
             tr:hover{
                 background-color: grey;
                 color: white;
+            }
+            tr{
+                transition: all 0.3s;
             }
             input{
                 transition: all 0.25s;
@@ -39,38 +38,32 @@
         </style>
     </head>
     <body>
-        <h1>Billetes registrados</h1>
+        <h1>Lista de tipos de billetes registrados</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Fecha</th>
-                    <th>Precio</th>
-                    <th>Nombre del tren</th>
-                    <th>Tipo de billete</th>
+                    <th>Tipo</th>
                     <th></th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tickets as $ticket)
+                @foreach ($tipos as $tipo)
                     <tr>
-                        <td>{{$ticket->date}}</td>
-                        <td>{{$ticket->price}}</td>
-                        <td>{{$ticket->train->name}}</td>
-                        <td>{{$ticket->ticketType->type}}</td>
+                        <td>{{$tipo->type}}</td>
                         <td>
-                            <form action="{{route("tickets.show",["ticket"=> $ticket->id])}}" method ="get">
+                            <form action="{{route("tipostickets.show",["tiposticket"=> $tipo->id])}}" method ="get">                                
                                 <input type="submit" value="👁️‍🗨️">
                             </form>
                         </td>
                         <td>
-                            <form action="{{route("tickets.edit",["ticket"=> $ticket->id])}}" method = "get">
+                            <form action="{{route("tipostickets.edit",["tiposticket"=> $tipo->id])}}" method = "get">                                
                                 <input type="submit" value="📝">
                             </form>
                         </td>
                         <td>
-                            <form action="{{route("tickets.destroy",["ticket"=> $ticket->id])}}" method = "post">
+                            <form action="{{route("tipostickets.destroy",["tiposticket"=> $tipo->id])}}" method = "post">
                                 @csrf
                                 {{method_field("DELETE")}}
                                 <input type="submit" value="🗑️">
@@ -78,7 +71,7 @@
                         </td>
                     </tr>
                 @endforeach
-                <form action="{{route("tickets.create")}}" method="get">
+                <form action="{{route("tipostickets.create")}}" method="get">
                     <input type="submit" value="♨️Crear">
                 </form>
             </tbody>

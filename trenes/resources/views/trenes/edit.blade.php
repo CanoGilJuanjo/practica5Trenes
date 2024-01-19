@@ -7,7 +7,7 @@
         <title>Editar tren</title>
     </head>
     <body>
-        <form action="{{route("trenes.update",["tren"=>$trenes->id])}}" method="post">
+        <form action="{{route("trenes.update",["trene"=>$trenes->id])}}" method="post">
             @csrf
             {{method_field("PUT")}}
             <label>Nombre del tren:</label>
@@ -18,21 +18,13 @@
             <input type="number" name="year" value="{{$trenes -> year}}"><br><br>
             <label >Tipo de tren</label>
             <select name="typeTrain" id="">
-                @php
-                    if($trenes->type_train_id == 1){
-                        echo "<option value='1' selected>Cercanias</option>";
-                        echo "<option value='2' >Media Distancia</option>";
-                        echo "<option value='3' >Alta Velocidad</option>";
-                    }else if($trenes->type_train_id == 2){
-                        echo "<option value='1' >Cercanias</option>";
-                        echo "<option value='2' selected>Media Distancia</option>";
-                        echo "<option value='3' >Alta Velocidad</option>";
-                    }else if($trenes->type_train_id == 3){
-                        echo "<option value='1' >Cercanias</option>";
-                        echo "<option value='2' >Media Distancia</option>";
-                        echo "<option value='3' selected>Alta Velocidad</option>";
-                    }
-                @endphp
+               @foreach ($tiposTrenes as $tipo)
+                    @if ($tipo->id == $trenes->train_id)
+                        <option value="{{$tipo->id}}" secleted>{{$tipo->type}}</option> 
+                    @else
+                        <option value="{{$tipo->id}}">{{$tipo->type}}</option>    
+                    @endif
+                @endforeach
             </select>
             <input type="submit" value="editar">
         </form>

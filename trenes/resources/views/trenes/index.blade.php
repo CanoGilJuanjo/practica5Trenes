@@ -16,6 +16,25 @@
                 background-color: grey;
                 color: white;
             }
+            tr{
+                transition: all 0.3s;
+            }
+            input{
+                transition: all 0.25s;
+            }
+            input[value="👁️‍🗨️"]:hover{
+                background-color: aqua;
+            }
+            input[value="🗑️"]:hover{
+                background-color: red;
+            }
+            input[value="📝"]:hover{
+                background-color: orange;
+            }
+            input[value="♨️Crear"]:hover{
+                background-color: green;
+                color:white;
+            }
         </style>
     </head>
     <body>
@@ -40,17 +59,17 @@
                         <td>{{$tren->year}}</td>
                         <td>{{$tren->trainType->type}}</td>
                         <td>
-                            <form action="{{route("trenes.show",["trenes"=> $tren->id])}}" method ="get">
-                                <input type="submit" value="🧿">
+                            <form action="{{route("trenes.show",["trene"=> $tren->id])}}" method ="get">                                
+                                <input type="submit" value="👁️‍🗨️">
                             </form>
                         </td>
                         <td>
-                            <form action="{{route("trenes.edit",["trenes"=> $tren->id])}}" method = "get">
+                            <form action="{{route("trenes.edit",["trene"=> $tren->id])}}" method = "get">                                
                                 <input type="submit" value="📝">
                             </form>
                         </td>
                         <td>
-                            <form action="{{route("trenes.destroy",["trenes"=> $tren->id])}}" method = "post">
+                            <form action="{{route("trenes.destroy",["trene"=> $tren->id])}}" method = "post">
                                 @csrf
                                 {{method_field("DELETE")}}
                                 <input type="submit" value="🗑️">
@@ -58,6 +77,9 @@
                         </td>
                     </tr>
                 @endforeach
+                <form action="{{route("trenes.create")}}" method="get">
+                    <input type="submit" value="♨️Crear">
+                </form>
             </tbody>
         </table>
     </body>
