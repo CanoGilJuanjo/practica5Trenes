@@ -6,19 +6,23 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Billetes</title>
         <style>
-            table{
+            body{
+                background-color: #6B656E;
+                color: white;
+            }
+            td{
                 text-align: center;
             }
-            td,th{
-                border: 1px solid black;
+            th,td{
+                border: 1px solid white;
                 padding: 5px;
+            }
+            tr:hover{
+                background-color: black;
+                color: white;
             }
             tr{
                 transition: all 0.3s;
-            }
-            tr:hover{
-                background-color: grey;
-                color: white;
             }
             input{
                 transition: all 0.25s;
@@ -36,10 +40,43 @@
                 background-color: green;
                 color:white;
             }
+
+            ul{
+                display: flex;
+                flex-flow: row wrap;
+                border: 1px solid white;
+                border-radius: 15px;
+                justify-content: center;
+                width: fit-content
+                
+            }
+            a{
+                margin: 10px;
+                text-decoration: none;
+                list-style: none;
+                color: white;
+                border: 1px solid white;
+                padding: 10px;
+                border-radius: 5px;
+                transition: all 0.3s;
+            }
+            a:hover{
+                background-color: #a399a8;
+            }
         </style>
     </head>
     <body>
-        <h1>Billetes registrados</h1>
+        <header>
+            <nav>
+                <ul>
+                    <a href="{{route("trenes.index")}}"><li>Trenes registrados</li></a>
+                    <a href="{{route("tickets.index")}}"><li>Billetes registrados</li></a>
+                    <a href="{{route("tipostrenes.index")}}"><li>Tipos de trenes registrados</li></a>
+                    <a href="{{route("tipostickets.index")}}"><li>Tipos de billetes registrados</li></a>
+                </ul>
+            </nav>
+        </header>
+        <h1>Lista de billetes registrados</h1>
         <table>
             <thead>
                 <tr>

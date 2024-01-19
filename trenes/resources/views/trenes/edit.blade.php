@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Editar tren</title>
+        <style>
+            body{
+                background-color: #6B656E;
+                color: white;
+            }
+        </style>
     </head>
     <body>
         <form action="{{route("trenes.update",["trene"=>$trenes->id])}}" method="post">
@@ -20,7 +26,7 @@
             <select name="typeTrain" id="">
                @foreach ($tiposTrenes as $tipo)
                     @if ($tipo->id == $trenes->train_id)
-                        <option value="{{$tipo->id}}" secleted>{{$tipo->type}}</option> 
+                        <option value="{{$tipo->id}}" selected>{{$tipo->type}}</option> 
                     @else
                         <option value="{{$tipo->id}}">{{$tipo->type}}</option>    
                     @endif

@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Editar tren</title>
+        <style>
+            body{
+                background-color: #6B656E;
+                color: white;
+            }
+        </style>
     </head>
     <body>
         <form action="{{route("tipostrenes.update",["tipostrene"=>$tipos->id])}}" method="post">

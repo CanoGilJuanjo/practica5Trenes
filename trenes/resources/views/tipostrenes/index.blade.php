@@ -5,15 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tipos de trenes disponibles</title>
         <style>
+            body{
+                background-color: #6B656E;
+                color: white;
+            }
             td{
                 text-align: center;
             }
             th,td{
-                border: 1px solid black;
+                border: 1px solid white;
                 padding: 5px;
             }
             tr:hover{
-                background-color: grey;
+                background-color: black;
                 color: white;
             }
             tr{
@@ -35,8 +39,41 @@
                 background-color: green;
                 color:white;
             }
+
+            ul{
+                display: flex;
+                flex-flow: row wrap;
+                border: 1px solid white;
+                border-radius: 15px;
+                justify-content: center;
+                width: fit-content
+                
+            }
+            a{
+                margin: 10px;
+                text-decoration: none;
+                list-style: none;
+                color: white;
+                border: 1px solid white;
+                padding: 10px;
+                border-radius: 5px;
+                transition: all 0.3s;
+            }
+            a:hover{
+                background-color: #a399a8;
+            }
         </style>
     </head>
+        <header>
+            <nav>
+                <ul>
+                    <a href="{{route("trenes.index")}}"><li>Trenes registrados</li></a>
+                    <a href="{{route("tickets.index")}}"><li>Billetes registrados</li></a>
+                    <a href="{{route("tipostrenes.index")}}"><li>Tipos de trenes registrados</li></a>
+                    <a href="{{route("tipostickets.index")}}"><li>Tipos de billetes registrados</li></a>
+                </ul>
+            </nav>
+        </header>
     <body>
         <h1>Lista de tipos de trenes registrados</h1>
         <table>
